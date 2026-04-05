@@ -33,7 +33,6 @@ export default function Dashboard({ auth, entries = [] }) {
 
             <div className="py-10 max-w-4xl mx-auto px-4">
 
-                {/* Log Form */}
                 <div className="bg-white rounded-xl shadow p-6 mb-8">
                     <h3 className="text-lg font-semibold mb-4">Log a Fuel Price</h3>
                     <form onSubmit={submit}
@@ -74,7 +73,7 @@ export default function Dashboard({ auth, entries = [] }) {
 
                         <div>
                             <label className="block text-sm font-medium mb-1">
-                                Price per Liter (?)
+                                Price per Liter (&#8369;)
                             </label>
                             <input
                                 type="number"
@@ -105,7 +104,6 @@ export default function Dashboard({ auth, entries = [] }) {
                     </form>
                 </div>
 
-                {/* Price History Table */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <h3 className="text-lg font-semibold mb-4">Price History</h3>
 
@@ -135,7 +133,7 @@ export default function Dashboard({ auth, entries = [] }) {
                                                 ? 'text-red-600'
                                                 : 'text-green-600'
                                         }`}>
-                                            ?{parseFloat(entry.price_per_liter).toFixed(2)}
+                                            &#8369;{parseFloat(entry.price_per_liter).toFixed(2)}
                                         </td>
                                         <td className="py-2 text-gray-400">
                                             {new Date(entry.created_at).toLocaleDateString()}
