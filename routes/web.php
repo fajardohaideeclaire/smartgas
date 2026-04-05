@@ -1,27 +1,19 @@
 <?php
-
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+ 
+use App\Http\Controllers\FuelController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
+ 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+	return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+ 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [FuelController::class, 'index'])
+         ->name('dashboard');
+    Route::post('/fuel-entries', [FuelController::class, 'store'])
+         ->name('fuel.store');
+    Route::delete('/fuel-entries/{fuelEntry}', [FuelController::class, 'destroy'])
+         ->name('fuel.destroy');
 });
-
+ 
 require __DIR__.'/auth.php';
